@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS-ERP System dla ZDS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Nagłówek -->
+    <header>
+        <h1>SOS-ERP System dla ZDS</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showModule('dashboard')">Dashboard</a></li>
+                <li><a href="#" onclick="showModule('openTrainings')">Szkolenia Otwarte</a></li>
+                <li><a href="#" onclick="showModule('crm')">CRM</a></li>
+                <li><a href="#" onclick="showModule('closedTrainings')">Szkolenia Zamknięte</a></li>
+                <li><a href="#" onclick="showModule('projectImplementations')">Wdrożenia Projektów</a></li>
+                <li><a href="#" onclick="showModule('trainersManagement')">Zarządzanie Trenerami</a></li>
+                <li><a href="#" onclick="showModule('workflow')">Workflow</a></li>
+                <li><a href="#" onclick="showModule('documentation')">Dokumentacja</a></li>
+                <li><a href="#" onclick="showModule('reporting')">Raportowanie i Analityka</a></li>
+                <li><a href="#" onclick="showModule('normLibrary')">Biblioteka Norm</a></li>
+                <li><a href="#" onclick="showModule('integration')">Integracje</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Główna zawartość -->
+    <main>
+        <!-- Dashboard -->
+        <section id="dashboard" class="module">
+            <h2>Dashboard</h2>
+            <p>Przegląd głównych wskaźników systemu ERP.</p>
+            <!-- Panel powiadomień -->
+            <div id="notifications">
+                <h3>Powiadomienia</h3>
+                <p>Brak nowych powiadomień.</p>
+            </div>
+        </section>
+
+        <!-- Szkolenia Otwarte -->
+        <section id="openTrainings" class="module">
+            <h2>Szkolenia Otwarte</h2>
+            <button onclick="showSubModule('trainingList')">Lista Szkoleń Otwartych</button>
+            <button onclick="showSubModule('addTraining')">Dodaj Szkolenie</button>
+            
+            <!-- Podmoduły -->
+            <div id="trainingList" class="sub-module">
+                <h3>Lista Szkoleń Otwartych</h3>
+                <!-- Tabela z listą szkoleń -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tytuł</th>
+                            <th>Data</th>
+                            <th>Miejsce</th>
+                            <th>Trener</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Szkolenie A</td>
+                            <td>01-09-2024</td>
+                            <td>Warszawa</td>
+                            <td>Jan Kowalski</td>
+                            <td>
+                                <button onclick="showTrainingDetails()">Szczegóły</button>
+                                <button onclick="editTraining()">Edytuj</button>
+                                <button onclick="deleteTraining()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addTraining" class="sub-module">
+                <h3>Dodaj Szkolenie</h3>
+                <!-- Formularz dodawania nowego szkolenia -->
+                <form>
+                    <label for="trainingTitle">Tytuł szkolenia:</label>
+                    <input type="text" id="trainingTitle" name="trainingTitle">
+
+                    <label for="trainingDate">Data:</label>
+                    <input type="date" id="trainingDate" name="trainingDate">
+
+                    <label for="trainingLocation">Miejsce:</label>
+                    <input type="text" id="trainingLocation" name="trainingLocation">
+
+                    <label for="trainingInstructor">Trener:</label>
+                    <input type="text" id="trainingInstructor" name="trainingInstructor">
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły szkolenia -->
+            <div id="trainingDetails" class="sub-module">
+                <h3>Szczegóły Szkolenia</h3>
+                <p>Opis szkolenia, data, miejsce, itd.</p>
+                <button onclick="editTraining()">Edytuj Szkolenie</button>
+                <button onclick="deleteTraining()">Usuń Szkolenie</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+
+        <!-- CRM -->
+        <section id="crm" class="module">
+            <h2>CRM</h2>
+            <button onclick="showSubModule('clientList')">Lista Klientów</button>
+            <button onclick="showSubModule('addClient')">Dodaj Klienta</button>
+
+            <!-- Podmoduły -->
+            <div id="clientList" class="sub-module">
+                <h3>Lista Klientów</h3>
+                <!-- Tabela z listą klientów -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Adres</th>
+                            <th>Telefon</th>
+                            <th>Email</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Firma X</td>
+                            <td>ul. Przykładowa 1, Warszawa</td>
+                            <td>123-456-789</td>
+                            <td>kontakt@firmax.pl</td>
+                            <td>
+                                <button onclick="showClientDetails()">Szczegóły</button>
+                                <button onclick="editClient()">Edytuj</button>
+                                <button onclick="deleteClient()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addClient" class="sub-module">
+                <h3>Dodaj Klienta</h3>
+                <!-- Formularz dodawania nowego klienta -->
+                <form>
+                    <label for="clientName">Nazwa klienta:</label>
+                    <input type="text" id="clientName" name="clientName">
+
+                    <label for="clientAddress">Adres:</label>
+                    <input type="text" id="clientAddress" name="clientAddress">
+
+                    <label for="clientPhone">Telefon:</label>
+                    <input type="tel" id="clientPhone" name="clientPhone">
+
+                    <label for="clientEmail">Email:</label>
+                    <input type="email" id="clientEmail" name="clientEmail">
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły klienta -->
+            <div id="clientDetails" class="sub-module">
+                <h3>Szczegóły Klienta</h3>
+                <p>Informacje o kliencie, historia kontaktów, itd.</p>
+                <button onclick="editClient()">Edytuj Klienta</button>
+                <button onclick="deleteClient()">Usuń Klienta</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+
+        <!-- Szkolenia Zamknięte -->
+        <section id="closedTrainings" class="module">
+            <h2>Szkolenia Zamknięte</h2>
+            <button onclick="showSubModule('closedTrainingList')">Lista Szkoleń Zamkniętych</button>
+            <button onclick="showSubModule('addClosedTraining')">Dodaj Szkolenie Zamknięte</button>
+
+            <!-- Podmoduły -->
+            <div id="closedTrainingList" class="sub-module">
+                <h3>Lista Szkoleń Zamkniętych</h3>
+                <!-- Tabela z listą szkoleń zamkniętych -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tytuł</th>
+                            <th>Data</th>
+                            <th>Miejsce</th>
+                            <th>Trener</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Szkolenie B</td>
+                            <td>15-10-2024</td>
+                            <td>Kraków</td>
+                            <td>Anna Nowak</td>
+                            <td>
+                                <button onclick="showClosedTrainingDetails()">Szczegóły</button>
+                                <button onclick="editClosedTraining()">Edytuj</button>
+                                <button onclick="deleteClosedTraining()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addClosedTraining" class="sub-module">
+                <h3>Dodaj Szkolenie Zamknięte</h3>
+                <!-- Formularz dodawania nowego szkolenia zamkniętego -->
+                <form>
+                    <label for="closedTrainingTitle">Tytuł szkolenia:</label>
+                    <input type="text" id="closedTrainingTitle" name="closedTrainingTitle">
+
+                    <label for="closedTrainingDate">Data:</label>
+                    <input type="date" id="closedTrainingDate" name="closedTrainingDate">
+
+                    <label for="closedTrainingLocation">Miejsce:</label>
+                    <input type="text" id="closedTrainingLocation" name="closedTrainingLocation">
+
+                    <label for="closedTrainingInstructor">Trener:</label>
+                    <input type="text" id="closedTrainingInstructor" name="closedTrainingInstructor">
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły szkolenia zamkniętego -->
+            <div id="closedTrainingDetails" class="sub-module">
+                <h3>Szczegóły Szkolenia Zamkniętego</h3>
+                <p>Opis szkolenia zamkniętego, data, miejsce, itd.</p>
+                <button onclick="editClosedTraining()">Edytuj Szkolenie Zamknięte</button>
+                <button onclick="deleteClosedTraining()">Usuń Szkolenie Zamknięte</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+
+        <!-- Wdrożenia Projektów -->
+        <section id="projectImplementations" class="module">
+            <h2>Wdrożenia Projektów</h2>
+            <button onclick="showSubModule('projectList')">Lista Projektów</button>
+            <button onclick="showSubModule('addProject')">Dodaj Projekt</button>
+
+            <!-- Podmoduły -->
+            <div id="projectList" class="sub-module">
+                <h3>Lista Projektów</h3>
+                <!-- Tabela z listą projektów -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Data rozpoczęcia</th>
+                            <th>Data zakończenia</th>
+                            <th>Klient</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Projekt X</td>
+                            <td>01-01-2024</td>
+                            <td>31-12-2024</td>
+                            <td>Firma Y</td>
+                            <td>
+                                <button onclick="showProjectDetails()">Szczegóły</button>
+                                <button onclick="editProject()">Edytuj</button>
+                                <button onclick="deleteProject()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addProject" class="sub-module">
+                <h3>Dodaj Projekt</h3>
+                <!-- Formularz dodawania nowego projektu -->
+                <form>
+                    <label for="projectName">Nazwa projektu:</label>
+                    <input type="text" id="projectName" name="projectName">
+
+                    <label for="projectStartDate">Data rozpoczęcia:</label>
+                    <input type="date" id="projectStartDate" name="projectStartDate">
+
+                    <label for="projectEndDate">Data zakończenia:</label>
+                    <input type="date" id="projectEndDate" name="projectEndDate">
+
+                    <label for="projectClient">Klient:</label>
+                    <input type="text" id="projectClient" name="projectClient">
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły projektu -->
+            <div id="projectDetails" class="sub-module">
+                <h3>Szczegóły Projektu</h3>
+                <p>Opis projektu, etapy, klient, itd.</p>
+                <button onclick="editProject()">Edytuj Projekt</button>
+                <button onclick="deleteProject()">Usuń Projekt</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+
+        <!-- Zarządzanie Trenerami -->
+        <section id="trainersManagement" class="module">
+            <h2>Zarządzanie Trenerami</h2>
+            <button onclick="showSubModule('trainer
+
+
+                          <!-- Lista Trenerów -->
+            <button onclick="showSubModule('trainerList')">Lista Trenerów</button>
+            <button onclick="showSubModule('addTrainer')">Dodaj Trenera</button>
+
+            <!-- Podmoduły -->
+            <div id="trainerList" class="sub-module">
+                <h3>Lista Trenerów</h3>
+                <!-- Tabela z listą trenerów -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Imię i Nazwisko</th>
+                            <th>Specjalizacja</th>
+                            <th>Doświadczenie</th>
+                            <th>Ocena</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jan Kowalski</td>
+                            <td>Excel zaawansowany</td>
+                            <td>10 lat</td>
+                            <td>4.5</td>
+                            <td>
+                                <button onclick="showTrainerDetails()">Szczegóły</button>
+                                <button onclick="editTrainer()">Edytuj</button>
+                                <button onclick="deleteTrainer()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addTrainer" class="sub-module">
+                <h3>Dodaj Trenera</h3>
+                <!-- Formularz dodawania nowego trenera -->
+                <form>
+                    <label for="trainerName">Imię i Nazwisko:</label>
+                    <input type="text" id="trainerName" name="trainerName">
+
+                    <label for="trainerSpecialization">Specjalizacja:</label>
+                    <input type="text" id="trainerSpecialization" name="trainerSpecialization">
+
+                    <label for="trainerExperience">Doświadczenie:</label>
+                    <input type="text" id="trainerExperience" name="trainerExperience">
+
+                    <label for="trainerRating">Ocena:</label>
+                    <input type="number" step="0.1" id="trainerRating" name="trainerRating" min="1" max="5">
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły trenera -->
+            <div id="trainerDetails" class="sub-module">
+                <h3>Szczegóły Trenera</h3>
+                <p>Informacje o trenerze, historia szkoleń, itd.</p>
+                <button onclick="editTrainer()">Edytuj Trenera</button>
+                <button onclick="deleteTrainer()">Usuń Trenera</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+
+        <!-- Workflow -->
+        <section id="workflow" class="module">
+            <h2>Workflow</h2>
+            <button onclick="showSubModule('taskList')">Lista Zadań</button>
+            <button onclick="showSubModule('addTask')">Dodaj Zadanie</button>
+
+            <!-- Podmoduły -->
+            <div id="taskList" class="sub-module">
+                <h3>Lista Zadań</h3>
+                <!-- Tabela z listą zadań -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nazwa zadania</th>
+                            <th>Przypisany do</th>
+                            <th>Status</th>
+                            <th>Termin</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Przygotowanie materiałów szkoleniowych</td>
+                            <td>Anna Kowalska</td>
+                            <td>W trakcie</td>
+                            <td>2024-09-15</td>
+                            <td>
+                                <button onclick="showTaskDetails()">Szczegóły</button>
+                                <button onclick="editTask()">Edytuj</button>
+                                <button onclick="deleteTask()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addTask" class="sub-module">
+                <h3>Dodaj Zadanie</h3>
+                <!-- Formularz dodawania nowego zadania -->
+                <form>
+                    <label for="taskName">Nazwa zadania:</label>
+                    <input type="text" id="taskName" name="taskName">
+
+                    <label for="assignedTo">Przypisany do:</label>
+                    <input type="text" id="assignedTo" name="assignedTo">
+
+                    <label for="taskStatus">Status:</label>
+                    <select id="taskStatus" name="taskStatus">
+                        <option value="nowe">Nowe</option>
+                        <option value="w_trakcie">W trakcie</option>
+                        <option value="zakończone">Zakończone</option>
+                    </select>
+
+                    <label for="dueDate">Termin:</label>
+                    <input type="date" id="dueDate" name="dueDate">
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły zadania -->
+            <div id="taskDetails" class="sub-module">
+                <h3>Szczegóły Zadania</h3>
+                <p>Informacje o zadaniu, przypisane osoby, status, itd.</p>
+                <button onclick="editTask()">Edytuj Zadanie</button>
+                <button onclick="deleteTask()">Usuń Zadanie</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+
+        <!-- Dokumentacja -->
+        <section id="documentation" class="module">
+            <h2>Dokumentacja</h2>
+            <button onclick="showSubModule('documentList')">Lista Dokumentów</button>
+            <button onclick="showSubModule('addDocument')">Dodaj Dokument</button>
+
+            <!-- Podmoduły -->
+            <div id="documentList" class="sub-module">
+                <h3>Lista Dokumentów</h3>
+                <!-- Tabela z listą dokumentów -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nazwa dokumentu</th>
+                            <th>Typ</th>
+                            <th>Data utworzenia</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Protokół szkolenia</td>
+                            <td>Protokół</td>
+                            <td>2024-08-01</td>
+                            <td>
+                                <button onclick="showDocumentDetails()">Szczegóły</button>
+                                <button onclick="editDocument()">Edytuj</button>
+                                <button onclick="deleteDocument()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addDocument" class="sub-module">
+                <h3>Dodaj Dokument</h3>
+                <!-- Formularz dodawania nowego dokumentu -->
+                <form>
+                    <label for="documentName">Nazwa dokumentu:</label>
+                    <input type="text" id="documentName" name="documentName">
+
+                    <label for="documentType">Typ:</label>
+                    <select id="documentType" name="documentType">
+                        <option value="protokół">Protokół</option>
+                        <option value="raport">Raport</option>
+                        <option value="certyfikat">Certyfikat</option>
+                    </select>
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły dokumentu -->
+            <div id="documentDetails" class="sub-module">
+                <h3>Szczegóły Dokumentu</h3>
+                <p>Informacje o dokumencie, typ, data utworzenia, itd.</p>
+                <button onclick="editDocument()">Edytuj Dokument</button>
+                <button onclick="deleteDocument()">Usuń Dokument</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+
+        <!-- Raportowanie i Analityka -->
+        <section id="reporting" class="module">
+            <h2>Raportowanie i Analityka</h2>
+            <button onclick="showSubModule('reportList')">Lista Raportów</button>
+            <button onclick="showSubModule('generateReport')">Generuj Raport</button>
+
+            <!-- Podmoduły -->
+            <div id="reportList" class="sub-module">
+                <h3>Lista Raportów</h3>
+                <!-- Tabela z listą raportów -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tytuł raportu</th>
+                            <th>Typ</th>
+                            <th>Data wygenerowania</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Raport miesięczny sprzedaży</td>
+                            <td>Sprzedażowy</td>
+                            <td>2024-07-31</td>
+                            <td>
+                                <button onclick="showReportDetails()">Szczegóły</button>
+                                <button onclick="editReport()">Edytuj</button>
+                                <button onclick="deleteReport()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="generateReport" class="sub-module">
+                <h3>Generuj Raport</h3>
+                <!-- Formularz generowania raportu -->
+                <form>
+                    <label for="reportTitle">Tytuł raportu:</label>
+                    <input type="text" id="reportTitle" name="reportTitle">
+
+                    <label for="reportType">Typ:</label>
+                    <select id="reportType" name="reportType">
+                        <option value="sprzedażowy">Sprzedażowy</option>
+                        <option value="finansowy">Finansowy</option>
+                        <option value="operacyjny">Operacyjny</option>
+                    </select>
+
+                    <button type="submit">Generuj</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły raportu -->
+            <div id="reportDetails" class="sub-module">
+                <h3>Szczegóły Raportu</h3>
+                <p>Informacje o raporcie, typ, data wygenerowania, itd.</p>
+                <button onclick="editReport()">Edytuj Raport</button>
+                <button onclick="deleteReport()">Usuń Raport</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+
+        <!-- Biblioteka Norm -->
+        <section id="normLibrary" class="module">
+            <h2>Biblioteka Norm</h2>
+            <button onclick="showSubModule('normList')">Lista Norm</button>
+            <button onclick="showSubModule('addNorm')">Dodaj Normę</button>
+
+            <!-- Podmoduły -->
+            <div id="normList" class="sub-module">
+                <h3>Lista Norm</h3>
+                <!-- Tabela z listą norm -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tytuł normy</th>
+                            <th>Status</th>
+                            <th>Data wprowadzenia</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ISO 9001</td>
+                            <td>Aktualne</td>
+                            <td>2023-05-01</td>
+                            <td>
+                                <button onclick="showNormDetails()">Szczegóły</button>
+                                <button onclick="editNorm()">Edytuj</button>
+                                <button onclick="deleteNorm()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addNorm" class="sub-module">
+                <h3>Dodaj Normę</h3>
+                <!-- Formularz dodawania nowej normy -->
+                <form>
+                    <label for="normTitle">Tytuł normy:</label>
+                    <input type="text" id="normTitle" name="normTitle">
+
+                    <label for="normStatus">Status:</label>
+                    <select id="normStatus" name="normStatus">
+                        <option value="aktualne">Aktualne</option>
+                        <option value="nieaktualne">Nieaktualne</option>
+                    </select>
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły normy -->
+            <div id="normDetails" class="sub-module">
+                <h3>Szczegóły Normy</h3>
+                <p>Informacje o normie, status, data wprowadzenia, itd.</p>
+                <button onclick="editNorm()">Edytuj Normę</button>
+                <button onclick="deleteNorm()">Usuń Normę</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+
+        <!-- Integracje -->
+        <section id="integration" class="module">
+            <h2>Integracje</h2>
+            <button onclick="showSubModule('integrationList')">Lista Integracji</button>
+            <button onclick="showSubModule('addIntegration')">Dodaj Integrację</button>
+
+            <!-- Podmoduły -->
+            <div id="integrationList" class="sub-module">
+                <h3>Lista Integracji</h3>
+                <!-- Tabela z listą integracji -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nazwa integracji</th>
+                            <th>Typ</th>
+                            <th>Status</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Integracja Salesforce</td>
+                            <td>CRM</td>
+                            <td>Aktywna</td>
+                            <td>
+                                <button onclick="showIntegrationDetails()">Szczegóły</button>
+                                <button onclick="editIntegration()">Edytuj</button>
+                                <button onclick="deleteIntegration()">Usuń</button>
+                            </td>
+                        </tr>
+                        <!-- Więcej wierszy -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="addIntegration" class="sub-module">
+                <h3>Dodaj Integrację</h3>
+                <!-- Formularz dodawania nowej integracji -->
+                <form>
+                    <label for="integrationName">Nazwa integracji:</label>
+                    <input type="text" id="integrationName" name="integrationName">
+
+                    <label for="integrationType">Typ:</label>
+                    <select id="integrationType" name="integrationType">
+                        <option value="crm">CRM</option>
+                        <option value="cms">CMS</option>
+                        <option value="email">Email</option>
+                    </select>
+
+                    <button type="submit">Zapisz</button>
+                </form>
+            </div>
+
+            <!-- Szczegóły integracji -->
+            <div id="integrationDetails" class="sub-module">
+                <h3>Szczegóły Integracji</h3>
+                <p>Informacje o integracji, typ, status, itd.</p>
+                <button onclick="editIntegration()">Edytuj Integrację</button>
+                <button onclick="deleteIntegration()">Usuń Integrację</button>
+                <!-- Inne szczegóły -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Stopka -->
+    <footer>
+        <p>&copy; 2024 SOS-ERP System dla ZDS. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
